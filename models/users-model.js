@@ -3,8 +3,9 @@ const db = require("../data/data-config");
 module.exports = {
   getAll,
   findById,
+  findByUsername,
   add,
-  findByUsername
+  remove
 };
 
 function getAll() {
@@ -43,4 +44,10 @@ function add(user) {
     .then(id => {
       return findById(...id);
     });
+}
+
+function remove(id) {
+  return db("projects")
+    .where({ id })
+    .del();
 }
